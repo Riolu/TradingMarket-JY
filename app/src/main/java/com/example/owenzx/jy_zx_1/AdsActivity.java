@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -47,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,6 +61,7 @@ public class AdsActivity extends AppCompatActivity
     private GoogleApiClient client;
     private ListAdapter adapter;
     private JsonObjectRequest adsreq;
+    private ListView listView_ad;
 //    private Handler handler = new Handler();
 //    public final Runnable runnable = new Runnable() {
 //        @Override
@@ -68,9 +71,11 @@ public class AdsActivity extends AppCompatActivity
 //        }
 //    };
 
+    final String adsMainUrl = "http://lizunks.xicp.io:34650/trade_test/all_product.php";
+    final String getTypeUrl = "http://lizunks.xicp.io:34650/trade_test/search_type.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final String adsMainUrl = "http://lizunks.xicp.io:34650/trade_test/all_product.php";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ads);
@@ -182,7 +187,7 @@ public class AdsActivity extends AppCompatActivity
 //        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_ads, adList);
         adapter = new SimpleAdapter(getApplicationContext(),prodList,R.layout.list_item_adsnew,from,to);
 
-        ListView listView_ad = (ListView) findViewById(R.id.listview_ad);
+        listView_ad = (ListView) findViewById(R.id.listview_ad);
         assert listView_ad != null;
         listView_ad.setAdapter(adapter);
 
@@ -253,12 +258,57 @@ public class AdsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            final ArrayList<HashMap<String,String>> prodList = new ArrayList<HashMap<String, String>>();
+
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("type", "sdl");
+
+
+            CustomRequest adsreq = new CustomRequest(Request.Method.POST, getTypeUrl,params, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        int success = response.getInt("success");
+                        if (success == 1){
+                            JSONArray ja = response.getJSONArray("posts");
+                            for (int i=0; i<ja.length(); ++i){
+                                JSONObject jsonpost = ja.getJSONObject(i);
+                                String productID = jsonpost.getString("pd_id");
+                                String prodName = jsonpost.getString("name");
+                                String prodPrice = jsonpost.getString("price");
+                                String prodDetail = jsonpost.getString("detail");
+                                HashMap<String,String> prod = new HashMap<String, String>();
+                                prod.put("pd_id",productID);
+                                prod.put("name",prodName);
+                                prod.put("price",prodPrice);
+                                prod.put("detail",prodDetail);
+                                prodList.add(prod);
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    String [] from = {"name","price","detail"};
+                    int[] to = {R.id.pd_title,R.id.pd_price,R.id.pd_detail};
+                    adapter = new SimpleAdapter(getApplicationContext(),prodList,R.layout.list_item_adsnew,from,to);
+                    listView_ad.setAdapter(adapter);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+//            MySingleton.getInstance().getRequestQueue().;
+            MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+
+            Toast.makeText(getApplicationContext(),
+                    "!!!",
+                    Toast.LENGTH_SHORT).show();
+
+
+
         } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
