@@ -13,8 +13,8 @@ public class AdDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ad_detail);
 
         Intent intent= getIntent();
-        if(intent!=null && intent.hasExtra(Intent.EXTRA_TEXT)){
-            String adDetailStr = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if(intent!=null && intent.hasExtra("pd_id")){
+            String adDetailStr = intent.getStringExtra("pd_id");
             ((TextView) findViewById(R.id.ad_detail)).setText(adDetailStr);
         }
     }

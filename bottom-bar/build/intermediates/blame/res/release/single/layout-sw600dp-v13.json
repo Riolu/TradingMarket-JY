@@ -4,6 +4,10 @@
         "source": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_128\\bottom-bar\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\design_layout_snackbar.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_128\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13\\design_layout_snackbar.xml",
         "source": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
     }

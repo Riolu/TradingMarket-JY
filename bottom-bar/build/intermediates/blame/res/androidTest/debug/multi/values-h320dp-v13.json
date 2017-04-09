@@ -24,6 +24,30 @@
         ]
     },
     {
+        "outputFile": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_128\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-h320dp-v13\\values-h320dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_128\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-h320dp-v13\\values-h320dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 57,
+                        "endOffset": 108
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-h320dp-v13\\values-h320dp-v13.xml",
         "map": [
             {

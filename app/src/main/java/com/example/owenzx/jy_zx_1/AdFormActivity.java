@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class AdFormActivity extends AppCompatActivity {
 
-    String addAdUrl = "http://lizunks.xicp.io:34650/webservice/addcomment.php";
+    String addAdUrl = "http://lizunks.xicp.io:34789/webservice/addcomment.php";
     EditText com_user, com_title,com_mes;
 
     @Override

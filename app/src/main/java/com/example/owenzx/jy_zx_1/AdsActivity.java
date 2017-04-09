@@ -11,6 +11,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SearchView;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -23,7 +25,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -41,6 +45,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class AdsActivity extends AppCompatActivity
@@ -52,43 +57,26 @@ public class AdsActivity extends AppCompatActivity
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    private ArrayAdapter<String> adapter;
+    private ListAdapter adapter;
     private JsonObjectRequest adsreq;
-    private Handler handler = new Handler();
-    public final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
-            adapter.notifyDataSetChanged();
-        }
-    };
+//    private Handler handler = new Handler();
+//    public final Runnable runnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+//            adapter.notifyDataSetChanged();
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final String adsMainUrl = "http://lizunks.xicp.io:34650/webservice/comments.php";
-        String[] adArray = {
-                "Item-Textbook",
-                "Seller-Gary",
-                "Price-$99.99",
-                "Item-Textbook",
-                "Seller-Gary",
-                "Price-$99.99",
-                "Item-Textbook",
-                "Seller-Gary",
-                "Price-$99.99",
-                "Item-Textbook",
-                "Seller-Gary",
-                "Price-$99.99",
-                "Item-Textbook",
-                "Seller-Gary",
-                "Price-$99.99"
-        };
-        List<String> adList = new ArrayList<String>(Arrays.asList(adArray));
+        final String adsMainUrl = "http://lizunks.xicp.io:34650/trade_test/all_product.php";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ads);
-
         handleIntent(getIntent());
+
+        final ArrayList<HashMap<String,String>> prodList = new ArrayList<HashMap<String, String>>();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -164,7 +152,16 @@ public class AdsActivity extends AppCompatActivity
                         JSONArray ja = response.getJSONArray("posts");
                         for (int i=0; i<ja.length(); ++i){
                             JSONObject jsonpost = ja.getJSONObject(i);
-                            JSONAdStrList.add(jsonpost.toString());
+                            String productID = jsonpost.getString("pd_id");
+                            String prodName = jsonpost.getString("name");
+                            String prodPrice = jsonpost.getString("price");
+                            String prodDetail = jsonpost.getString("detail");
+                            HashMap<String,String> prod = new HashMap<String, String>();
+                            prod.put("pd_id",productID);
+                            prod.put("name",prodName);
+                            prod.put("price",prodPrice);
+                            prod.put("detail",prodDetail);
+                            prodList.add(prod);
                         }
                     }
                 } catch (JSONException e) {
@@ -180,30 +177,25 @@ public class AdsActivity extends AppCompatActivity
         });
         MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
 
-
+        String [] from = {"name","price","detail"};
+        int[] to = {R.id.pd_title,R.id.pd_price,R.id.pd_detail};
 //        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_ads, adList);
-        adapter = new ArrayAdapter<String>(this,R.layout.list_item_ads,JSONAdStrList);
+        adapter = new SimpleAdapter(getApplicationContext(),prodList,R.layout.list_item_adsnew,from,to);
+
         ListView listView_ad = (ListView) findViewById(R.id.listview_ad);
+        assert listView_ad != null;
         listView_ad.setAdapter(adapter);
 
         listView_ad.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-//                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, adsMainUrl, null, new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        String adDetail = response.toString();
-//                        Intent intent = new Intent(AdsActivity.this, AdDetailActivity.class).putExtra(Intent.EXTRA_TEXT, adDetail);
-//                        startActivity(intent);
-//                    }
-//                }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//
-//                    }
-//                });
-                String adDetail = adapter.getItem(pos);
-                Intent intent = new Intent(AdsActivity.this,AdDetailActivity.class).putExtra(Intent.EXTRA_TEXT,adDetail);
+
+//                String adDetail = adapter.getItem(pos);
+                Intent intent = new Intent(AdsActivity.this,AdDetailActivity.class).putExtra("pd_id",prodList.get(pos).get("pd_id"));
+                intent.putExtra("name",prodList.get(pos).get("name"));
+                intent.putExtra("price",prodList.get(pos).get("price"));
+                intent.putExtra("detail",prodList.get(pos).get("detail"));
+//                Intent intent = new Intent(AdsActivity.this,AdDetailActivity.class).putExtra(Intent.EXTRA_TEXT,adDetail);
                 startActivity(intent);
             }
         });
@@ -282,8 +274,8 @@ public class AdsActivity extends AppCompatActivity
     @Override
     public void onStart() {
         super.onStart();
-        MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
-        adapter.notifyDataSetChanged();
+//        MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+//        adapter.notifyDataSetChanged();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
@@ -304,8 +296,8 @@ public class AdsActivity extends AppCompatActivity
     @Override
     public void onResume() {
         super.onResume();
-        MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
-        adapter.notifyDataSetChanged();
+//        MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+//        adapter.notifyDataSetChanged();
         mBottomBar.setDefaultTabPosition(0);
     }
 
