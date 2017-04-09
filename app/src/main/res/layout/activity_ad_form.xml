@@ -12,11 +12,36 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/comUser"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp"
-        android:text="THIS IS THE AD FORM"
-        android:textSize="58dp"
-        android:textIsSelectable="true" />
+        android:hint="Username"
+        android:minWidth="200dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/comTitle"
+        android:layout_below="@+id/comUser"
+        android:layout_centerHorizontal="true"
+        android:hint="Title"
+        android:minWidth="200dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/comMes"
+        android:layout_below="@+id/comTitle"
+        android:layout_centerHorizontal="true"
+        android:hint="Message"
+        android:minWidth="200dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/buttonAddAd"
+        android:layout_below="@+id/comMes"
+        android:layout_alignLeft="@+id/comMes"
+        android:layout_alignStart="@+id/comMes" />
 </RelativeLayout>

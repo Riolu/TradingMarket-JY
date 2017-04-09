@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,11 +25,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,10 +52,21 @@ public class AdsActivity extends AppCompatActivity
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    private ArrayAdapter<String> adapter;
+    private JsonObjectRequest adsreq;
+    private Handler handler = new Handler();
+    public final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+            adapter.notifyDataSetChanged();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String[] adArray= {
+        final String adsMainUrl = "http://lizunks.xicp.io:34650/webservice/comments.php";
+        String[] adArray = {
                 "Item-Textbook",
                 "Seller-Gary",
                 "Price-$99.99",
@@ -74,12 +94,13 @@ public class AdsActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                Intent createAdForm = new Intent(view.getContext(),AdFormActivity.class);
+                Intent createAdForm = new Intent(view.getContext(), AdFormActivity.class);
                 startActivity(createAdForm);
             }
         });
@@ -96,6 +117,7 @@ public class AdsActivity extends AppCompatActivity
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.noTopOffset();
         mBottomBar.noNavBarGoodness();
+        mBottomBar.setDefaultTabPosition(0);
 
         mBottomBar.setItemsFromMenu(R.menu.bottombar_menu, new OnMenuTabClickListener() {
             @Override
@@ -106,15 +128,15 @@ public class AdsActivity extends AppCompatActivity
                     case R.id.bb_menu_requirements:
                         Intent intent2 = new Intent(AdsActivity.this, ReqActivity.class);
                         startActivity(intent2);
-                    break;
+                        break;
                     case R.id.bb_menu_messages:
                         Intent intent3 = new Intent(AdsActivity.this, MessageActivity.class);
                         startActivity(intent3);
-                    break;
+                        break;
                     case R.id.bb_menu_account:
                         Intent intent4 = new Intent(AdsActivity.this, AccountActivity.class);
                         startActivity(intent4);
-                    break;
+                        break;
                 }
 //                startActivity(intent);
             }
@@ -131,19 +153,61 @@ public class AdsActivity extends AppCompatActivity
         mBottomBar.mapColorForTab(3, "#FF5252");
 
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.list_item_ads,adList);
+        final ArrayList<String> JSONAdStrList = new ArrayList<String>();
+
+        adsreq = new JsonObjectRequest(Request.Method.GET, adsMainUrl,null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    int success = response.getInt("success");
+                    if (success == 1){
+                        JSONArray ja = response.getJSONArray("posts");
+                        for (int i=0; i<ja.length(); ++i){
+                            JSONObject jsonpost = ja.getJSONObject(i);
+                            JSONAdStrList.add(jsonpost.toString());
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+
+
+//        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_ads, adList);
+        adapter = new ArrayAdapter<String>(this,R.layout.list_item_ads,JSONAdStrList);
         ListView listView_ad = (ListView) findViewById(R.id.listview_ad);
         listView_ad.setAdapter(adapter);
 
-        listView_ad.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView_ad.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l){
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+//                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, adsMainUrl, null, new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        String adDetail = response.toString();
+//                        Intent intent = new Intent(AdsActivity.this, AdDetailActivity.class).putExtra(Intent.EXTRA_TEXT, adDetail);
+//                        startActivity(intent);
+//                    }
+//                }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//
+//                    }
+//                });
                 String adDetail = adapter.getItem(pos);
                 Intent intent = new Intent(AdsActivity.this,AdDetailActivity.class).putExtra(Intent.EXTRA_TEXT,adDetail);
                 startActivity(intent);
             }
         });
-
+//        handler.postDelayed(runnable,1000);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -218,7 +282,8 @@ public class AdsActivity extends AppCompatActivity
     @Override
     public void onStart() {
         super.onStart();
-
+        MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+        adapter.notifyDataSetChanged();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
@@ -236,14 +301,12 @@ public class AdsActivity extends AppCompatActivity
     }
 
 
-
-
-
-
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
-
+        MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+        adapter.notifyDataSetChanged();
+        mBottomBar.setDefaultTabPosition(0);
     }
 
     @Override
@@ -267,7 +330,7 @@ public class AdsActivity extends AppCompatActivity
     }
 
     @Override
-    protected  void onSaveInstanceState(Bundle outState){
+    protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         mBottomBar.onSaveInstanceState(outState);
@@ -275,13 +338,13 @@ public class AdsActivity extends AppCompatActivity
 
 
     @Override
-    protected void onNewIntent(Intent intent){
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         handleIntent(intent);
     }
 
-    private void handleIntent(Intent intent){
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())){
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use te query to do sth.
             Intent intent2 = new Intent(AdsActivity.this, AdsSearchActivity.class);
