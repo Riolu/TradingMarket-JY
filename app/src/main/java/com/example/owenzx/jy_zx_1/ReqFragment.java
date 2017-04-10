@@ -61,7 +61,7 @@ public class ReqFragment extends Fragment
 
     private OnFragmentInteractionListener mListener;
 
-    final String reqsMainUrl = "http://lizunks.xicp.io:34789/trade_test/all_req.php";
+    final String reqsMainUrl = "http://lizunks.xicp.io:34789/trade_test/all_req_on.php";
     final String getTypeReqUrl = "http://lizunks.xicp.io:34789/trade_test/search_req_type.php";
     final String searchReqUrl = "http://lizunks.xicp.io:34789/trade_test/search_req_title.php";
     final ArrayList<HashMap<String,String>> reqList = new ArrayList<HashMap<String, String>>();
@@ -110,6 +110,13 @@ public class ReqFragment extends Fragment
                     if (success == 1){
                         JSONArray ja = response.getJSONArray("posts");
                         handleJSONArray(ja);
+                    }else{
+                        reqList.clear();
+                        String[] from = {"title", "ideal_price", "description"};
+                        int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
+                        assert (getActivity() != null);
+                        adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
+                        listView_req.setAdapter(adapter);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -134,10 +141,20 @@ public class ReqFragment extends Fragment
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                String mUserid = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
+                if (mUserid!=null){
+                    //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                Intent createReqForm = new Intent(view.getContext(), ReqFormActivity.class);
-                startActivity(createReqForm);
+
+                    Intent createReqForm = new Intent(view.getContext(), ReqFormActivity.class);
+                    createReqForm.putExtra("mode","NEW");
+
+                    startActivity(createReqForm);
+                }else{
+                    Intent loginIntent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(loginIntent);
+                }
+
             }
         });
         DrawerLayout drawer = (DrawerLayout) view.findViewById(R.id.drawer_layout_reqs);
@@ -156,16 +173,23 @@ public class ReqFragment extends Fragment
         listView_req.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                String mUserid = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
+                if (mUserid!=null){
+                    //                String adDetail = adapter.getItem(pos);
+                    Intent intent = new Intent(getActivity(),ReqDetailActivity.class).putExtra("req_id",reqList.get(pos).get("req_id"));
+                    intent.putExtra("title",reqList.get(pos).get("title"));
+                    intent.putExtra("ideal_price",reqList.get(pos).get("ideal_price"));
+                    intent.putExtra("description",reqList.get(pos).get("description"));
+                    intent.putExtra("author_id",reqList.get(pos).get("author_id"));
+                    intent.putExtra("author",reqList.get(pos).get("author"));
+                    intent.putExtra("type",reqList.get(pos).get("type"));
+                    startActivity(intent);
+                }else{
+                    Intent loginIntent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(loginIntent);
+                }
 
-//                String adDetail = adapter.getItem(pos);
-                Intent intent = new Intent(getActivity(),ReqDetailActivity.class).putExtra("req_id",reqList.get(pos).get("req_id"));
-                intent.putExtra("title",reqList.get(pos).get("title"));
-                intent.putExtra("ideal_price",reqList.get(pos).get("ideal_price"));
-                intent.putExtra("description",reqList.get(pos).get("description"));
-                intent.putExtra("author_id",reqList.get(pos).get("author_id"));
-                intent.putExtra("author",reqList.get(pos).get("author"));
-//                Intent intent = new Intent(AdsActivity.this,AdDetailActivity.class).putExtra(Intent.EXTRA_TEXT,adDetail);
-                startActivity(intent);
+
             }
         });
         assert(reqReq!=null);
@@ -214,14 +238,156 @@ public class ReqFragment extends Fragment
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera_reqs) {
+        if (id == R.id.booksReq) {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("type", "书籍");
+            CustomRequest adsreq = new CustomRequest(Request.Method.POST, getTypeReqUrl,params, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        int success = response.getInt("success");
+                        if (success == 1){
+                            JSONArray ja = response.getJSONArray("posts");
+                            handleJSONArray(ja);
+                        }else{
+                            reqList.clear();
+                            String[] from = {"title", "ideal_price", "description"};
+                            int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
+                            assert (getActivity() != null);
+                            adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
+                            listView_req.setAdapter(adapter);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
+            MySingleton.getInstance(getActivity()).addToRequestQueue(adsreq);
+//
+//            Toast.makeText(getActivity(),
+//                    "!!!",
+//                    Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.livingReq) {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("type", "生活用品");
+            CustomRequest adsreq = new CustomRequest(Request.Method.POST, getTypeReqUrl,params, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        int success = response.getInt("success");
+                        if (success == 1){
+                            JSONArray ja = response.getJSONArray("posts");
+                            handleJSONArray(ja);
+                        }else{
+                            reqList.clear();
+                            String[] from = {"title", "ideal_price", "description"};
+                            int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
+                            assert (getActivity() != null);
+                            adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
+                            listView_req.setAdapter(adapter);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
+            MySingleton.getInstance(getActivity()).addToRequestQueue(adsreq);
 
-        } else if (id == R.id.nav_gallery_reqs) {
-
-        } else if (id == R.id.nav_share_reqs) {
-
-        } else if (id == R.id.nav_send_reqs) {
-
+        } else if (id == R.id.entertainReq) {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("type", "娱乐用品");
+            CustomRequest adsreq = new CustomRequest(Request.Method.POST, getTypeReqUrl,params, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        int success = response.getInt("success");
+                        if (success == 1){
+                            JSONArray ja = response.getJSONArray("posts");
+                            handleJSONArray(ja);
+                        }else{
+                            reqList.clear();
+                            String[] from = {"title", "ideal_price", "description"};
+                            int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
+                            assert (getActivity() != null);
+                            adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
+                            listView_req.setAdapter(adapter);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
+            MySingleton.getInstance(getActivity()).addToRequestQueue(adsreq);
+        } else if (id == R.id.sportsReq) {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("type", "体育用品");
+            CustomRequest adsreq = new CustomRequest(Request.Method.POST, getTypeReqUrl,params, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        int success = response.getInt("success");
+                        if (success == 1){
+                            JSONArray ja = response.getJSONArray("posts");
+                            handleJSONArray(ja);
+                        }else{
+                            reqList.clear();
+                            String[] from = {"title", "ideal_price", "description"};
+                            int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
+                            assert (getActivity() != null);
+                            adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
+                            listView_req.setAdapter(adapter);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
+            MySingleton.getInstance(getActivity()).addToRequestQueue(adsreq);
+        } else if (id == R.id.othersReq) {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("type", "其它");
+            CustomRequest adsreq = new CustomRequest(Request.Method.POST, getTypeReqUrl,params, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        int success = response.getInt("success");
+                        if (success == 1){
+                            JSONArray ja = response.getJSONArray("posts");
+                            handleJSONArray(ja);
+                        }else{
+                            reqList.clear();
+                            String[] from = {"title", "ideal_price", "description"};
+                            int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
+                            assert (getActivity() != null);
+                            adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
+                            listView_req.setAdapter(adapter);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
+            MySingleton.getInstance(getActivity()).addToRequestQueue(adsreq);
         }
 
         DrawerLayout drawer = (DrawerLayout) getView().findViewById(R.id.drawer_layout_reqs);
@@ -250,6 +416,13 @@ public class ReqFragment extends Fragment
                             if (success == 1){
                                 JSONArray ja = response.getJSONArray("posts");
                                 handleJSONArray(ja);
+                            }else{
+                                reqList.clear();
+                                String[] from = {"title", "ideal_price", "description"};
+                                int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
+                                assert (getActivity() != null);
+                                adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
+                                listView_req.setAdapter(adapter);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -305,6 +478,13 @@ public class ReqFragment extends Fragment
                     if (success == 1){
                         JSONArray ja = response.getJSONArray("posts");
                         handleJSONArray(ja);
+                    }else{
+                        reqList.clear();
+                        String[] from = {"title", "ideal_price", "description"};
+                        int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
+                        assert (getActivity() != null);
+                        adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
+                        listView_req.setAdapter(adapter);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -347,6 +527,7 @@ public class ReqFragment extends Fragment
                 String reqTitle = jsonpost.getString("title");
                 String reqBudget = jsonpost.getString("ideal_price");
                 String reqDetail = jsonpost.getString("description");
+//                String reqType = jsonpost.getString("type");
                 String authorID = jsonpost.getString("author_id");
                 String authorName = jsonpost.getString("author");
                 HashMap<String, String> prod = new HashMap<String, String>();
@@ -356,6 +537,7 @@ public class ReqFragment extends Fragment
                 prod.put("description", reqDetail);
                 prod.put("author_id",authorID);
                 prod.put("author",authorName);
+//                prod.put("type",reqType);
                 reqList.add(prod);
 
                 String[] from = {"title", "ideal_price", "description"};

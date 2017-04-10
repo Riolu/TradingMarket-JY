@@ -96,11 +96,21 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BUY"
+                    android:text="购买"
                     android:id="@+id/buy_button"
                     android:layout_gravity="right"
                     android:layout_below="@+id/pic"
                     android:layout_alignParentRight="true" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="修改商品描述"
+                    android:id="@+id/button_edit_ad"
+                    android:layout_gravity="right"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@+id/pic"
+                    android:layout_alignStart="@+id/pic" />
 
             </RelativeLayout>
 

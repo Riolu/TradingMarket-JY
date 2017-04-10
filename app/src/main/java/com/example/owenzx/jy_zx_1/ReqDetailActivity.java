@@ -39,24 +39,25 @@ import java.util.Map;
 
 public class ReqDetailActivity extends AppCompatActivity {
 
-    String getCommentUrl = "http://lizunks.xicp.io:34650/trade_test/comment_query.php";
-    String addDealUrl = "http://lizunks.xicp.io:34650/trade_test/add_deal.php";
-    String addCommentUrl = "http://lizunks.xicp.io:34650/trade_test/add_comment.php";
+    String getCommentUrl = "http://lizunks.xicp.io:34789/trade_test/comment_query.php";
+    String addDealUrl = "http://lizunks.xicp.io:34789/trade_test/add_deal.php";
+    String addCommentUrl = "http://lizunks.xicp.io:34789/trade_test/add_comment.php";
     ListView listView_comment;
     public static ArrayList<HashMap<String,String>> CommentList = new ArrayList<HashMap<String, String>>();
 
     String reqID;   //前面传给我
     String authorID; //前面传给我
     String author;   //前面传给我
-    String supplierID="13"; //登陆后得到
-    String supplier="ZX";
+    String supplierID; //登陆后得到
+    String supplier;
     String receiverID;
     String receiver;
-    String senderID="13"; //登陆后得到
-    String sender="ZX";
+    String senderID; //登陆后得到
+    String sender;
 
     String commentType="1";
     String dealType="1";
+    CustomRequest adsreq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +65,21 @@ public class ReqDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_req_detail);
 
+        String userid = LoginData.getFromPrefs(ReqDetailActivity.this,LoginData.PREFS_LOGIN_USERID_KEY,null);
+
+
+        supplierID = LoginData.getFromPrefs(ReqDetailActivity.this,LoginData.PREFS_LOGIN_USERID_KEY,null);
+        senderID = LoginData.getFromPrefs(ReqDetailActivity.this,LoginData.PREFS_LOGIN_USERID_KEY,null);
+        supplier=LoginData.getFromPrefs(ReqDetailActivity.this,LoginData.PREFS_LOGIN_USERNAME_KEY,null);
+        sender = LoginData.getFromPrefs(ReqDetailActivity.this,LoginData.PREFS_LOGIN_USERNAME_KEY,null);
+
         //前一个页面得到的参数
         Intent intent= getIntent();
         reqID = intent.getStringExtra("req_id");
-        String reqName = intent.getStringExtra("title");
-        String reqPrice = intent.getStringExtra("ideal_price");
-        String reqDetail = intent.getStringExtra("description");
+        final String reqName = intent.getStringExtra("title");
+        final String reqPrice = intent.getStringExtra("ideal_price");
+        final String reqDetail = intent.getStringExtra("description");
+        final String reqType = intent.getStringExtra("type");
         authorID = intent.getStringExtra("author_id");
         author = intent.getStringExtra("author");
         ((TextView) findViewById(R.id.req_name)).setText(reqName);
@@ -77,9 +87,93 @@ public class ReqDetailActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.req_price)).setText("预算 ¥"+reqPrice);
         ((TextView) findViewById(R.id.req_detail_Info)).setText(reqDetail);
 
+        listView_comment = (ListView) findViewById(R.id.listView_comment);
+
+        listView_comment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                receiver = CommentList.get(pos).get("sender");
+                receiverID = CommentList.get(pos).get("senderID");
+                //    通过AlertDialog.Builder这个类来实例化我们的一个AlertDialog的对象
+                AlertDialog.Builder builder = new AlertDialog.Builder(ReqDetailActivity.this);
+                builder.setIcon(R.drawable.ic_menu_gallery);
+                builder.setTitle("添加留言");
+                final EditText editText = new EditText(ReqDetailActivity.this);
+                if (receiver.equals("暂无评论")){editText.setHint("给买家留言");}
+                else editText.setHint("回复@"+receiver+":");
+                builder.setView(editText);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        //Toast.makeText(AdDetailActivity.this, receiver, Toast.LENGTH_SHORT).show();
+                        final String comment = editText.getText().toString();
+                        StringRequest postRequest = new StringRequest(Request.Method.POST,addCommentUrl,new Response.Listener<String>(){
+                            @Override
+                            public void onResponse(String response){
+                                Toast.makeText(getApplicationContext(), "评论已添加", Toast.LENGTH_SHORT).show();
+                                MySingleton.getInstance(ReqDetailActivity.this).addToRequestQueue(adsreq);
+                            }
+                        },new Response.ErrorListener(){
+                            @Override
+                            public void onErrorResponse(VolleyError error){
+
+                            }
+                        }){
+                            @Override
+                            protected Map<String,String> getParams(){
+                                Map<String,String> params = new HashMap<String,String>();
+                                params.put("pd_or_req_id",reqID);
+                                params.put("comment",comment);
+                                params.put("sender_id",senderID);
+                                params.put("sender",sender);
+                                if (receiver.equals("暂无评论")){params.put("receiver_id",authorID); params.put("receiver","NULL");}
+                                else {params.put("receiver_id",receiverID); params.put("receiver",receiver);}
+                                params.put("comment_type",commentType);
+                                return params;
+                            }
+                        };
+                        //String test=prodID+" "+comment+" "+senderID+" "+sender+" "+receiverID+" "+receiver;
+                        //Toast.makeText(AdDetailActivity.this, test, Toast.LENGTH_SHORT).show();
+                        MySingleton.getInstance(ReqDetailActivity.this).addToRequestQueue(postRequest);
+                    }
+                });
+                //    设置一个NegativeButton
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        //Toast.makeText(AdDetailActivity.this, "negative: " + which, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                //    显示出该对话框
+                builder.show();
+            }
+        });
+
+
 
 
         //提供按钮
+        Button buttonEdit = (Button) findViewById(R.id.button_edit_req);
+        assert buttonEdit != null;
+        if (!userid.equals(authorID)){
+            buttonEdit.setVisibility(View.GONE);
+        }
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent editIntent = new Intent(ReqDetailActivity.this,ReqFormActivity.class);
+                editIntent.putExtra("mode","EDIT");
+                editIntent.putExtra("name",reqName);
+                editIntent.putExtra("price",reqPrice);
+                editIntent.putExtra("detail",reqDetail);
+                editIntent.putExtra("type",reqType);
+                startActivity(editIntent);
+            }
+        });
         Button buttonBuy = (Button) findViewById(R.id.supply_button);
         assert buttonBuy != null;
         buttonBuy.setOnClickListener(new View.OnClickListener()
@@ -116,6 +210,8 @@ public class ReqDetailActivity extends AppCompatActivity {
                                 params.put("buyer_or_supplier_id",supplierID);
                                 params.put("pd_or_req_id",reqID);
                                 params.put("deal_type",dealType);
+                                params.put("author",author);
+                                params.put("buyer_or_supplier",supplier);
                                 return params;
                             }
                         };
@@ -142,7 +238,7 @@ public class ReqDetailActivity extends AppCompatActivity {
         Map<String, String> params = new HashMap<String, String>();
         params.put("pd_or_req_id", reqID);
         params.put("comment_type", commentType);
-        CustomRequest adsreq = new CustomRequest(Request.Method.POST, getCommentUrl,params, new Response.Listener<JSONObject>() {
+        adsreq = new CustomRequest(Request.Method.POST, getCommentUrl,params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -177,75 +273,13 @@ public class ReqDetailActivity extends AppCompatActivity {
                 String [] from = {"sender","message"};
                 int[] to = {R.id.comment_sender,R.id.comment_message};
                 ListAdapter adapter = new SimpleAdapter(getApplicationContext(),CommentList,R.layout.list_item_comment,from,to);
-                listView_comment = (ListView) findViewById(R.id.listView_comment);
                 listView_comment.setAdapter(adapter);
 
                 setListViewHeightBasedOnChildren(listView_comment);
                 listView_comment.setFocusable(false);
                 ScrollView:((ScrollView)findViewById(R.id.scrollView)).smoothScrollTo(0,20);
 
-                listView_comment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                        receiver = CommentList.get(pos).get("sender");
-                        receiverID = CommentList.get(pos).get("senderID");
-                        //    通过AlertDialog.Builder这个类来实例化我们的一个AlertDialog的对象
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ReqDetailActivity.this);
-                        builder.setIcon(R.drawable.ic_menu_gallery);
-                        builder.setTitle("添加留言");
-                        final EditText editText = new EditText(ReqDetailActivity.this);
-                        if (receiver.equals("暂无评论")){editText.setHint("给买家留言");}
-                        else editText.setHint("回复@"+receiver+":");
-                        builder.setView(editText);
-                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                //Toast.makeText(AdDetailActivity.this, receiver, Toast.LENGTH_SHORT).show();
-                                final String comment = editText.getText().toString();
-                                StringRequest postRequest = new StringRequest(Request.Method.POST,addCommentUrl,new Response.Listener<String>(){
-                                    @Override
-                                    public void onResponse(String response){
-                                        Toast.makeText(getApplicationContext(), "评论已添加", Toast.LENGTH_SHORT).show();
-                                    }
-                                },new Response.ErrorListener(){
-                                    @Override
-                                    public void onErrorResponse(VolleyError error){
 
-                                    }
-                                }){
-                                    @Override
-                                    protected Map<String,String> getParams(){
-                                        Map<String,String> params = new HashMap<String,String>();
-                                        params.put("pd_or_req_id",reqID);
-                                        params.put("comment",comment);
-                                        params.put("sender_id",senderID);
-                                        params.put("sender",sender);
-                                        if (receiver.equals("暂无评论")){params.put("receiver_id",authorID); params.put("receiver","NULL");}
-                                        else {params.put("receiver_id",receiverID); params.put("receiver",receiver);}
-                                        params.put("comment_type",commentType);
-                                        return params;
-                                    }
-                                };
-                                //String test=prodID+" "+comment+" "+senderID+" "+sender+" "+receiverID+" "+receiver;
-                                //Toast.makeText(AdDetailActivity.this, test, Toast.LENGTH_SHORT).show();
-                                MySingleton.getInstance(ReqDetailActivity.this).addToRequestQueue(postRequest);
-                            }
-                        });
-                        //    设置一个NegativeButton
-                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                //Toast.makeText(AdDetailActivity.this, "negative: " + which, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        //    显示出该对话框
-                        builder.show();
-                    }
-                });
 
 
             }
@@ -286,6 +320,7 @@ public class ReqDetailActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response){
                                 Toast.makeText(getApplicationContext(), "评论已添加", Toast.LENGTH_SHORT).show();
+                                MySingleton.getInstance(ReqDetailActivity.this).addToRequestQueue(adsreq);
                             }
                         },new Response.ErrorListener(){
                             @Override

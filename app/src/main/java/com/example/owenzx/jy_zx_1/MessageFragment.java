@@ -1,12 +1,15 @@
 package com.example.owenzx.jy_zx_1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 /**
@@ -63,8 +66,27 @@ public class MessageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_message, container, false);
+        CardView commentMessage = (CardView) view.findViewById(R.id.comment_message);
+        commentMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(MessageActivity.this, "This is comment_message!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), CommentMessageActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        CardView DealMessage = (CardView) view.findViewById(R.id.deal_message);
+        DealMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CommentDealActivity.class);
+                startActivity(intent);
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_message, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

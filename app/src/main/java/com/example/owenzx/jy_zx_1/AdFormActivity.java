@@ -1,75 +1,219 @@
 package com.example.owenzx.jy_zx_1;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdFormActivity extends AppCompatActivity {
+public class AdFormActivity extends AppCompatActivity implements View.OnClickListener{
 
-    String addAdUrl = "http://lizunks.xicp.io:34789/trade_test/add_product.php";
-    EditText prod_name, prod_price,prod_detail;
+    String addAdUrl = "http://lizunks.xicp.io:34789/trade_test/add_product_test.php";
+    EditText prod_name, prod_price, prod_detail;
+    Spinner prod_type_sp;
+    private TextView messageText;
+    private Button uploadButton, btnselectpic;
+    private EditText etxtUpload;
+    private ImageView imageview;
+    private ProgressDialog dialog = null;
+    private JSONObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_form);
-        prod_name = (EditText)findViewById(R.id.prodName);
-        prod_price = (EditText)findViewById(R.id.prodPrice);
-        prod_detail = (EditText)findViewById(R.id.prodDetail);
+        Intent intent = getIntent();
+        String formMode = intent.getStringExtra("mode");
+        prod_name = (EditText) findViewById(R.id.prodName);
+        prod_price = (EditText) findViewById(R.id.prodPrice);
+        prod_detail = (EditText) findViewById(R.id.prodDetail);
+//        prod_type = (EditText) findViewById(R.id.prodType);
+        prod_type_sp = (Spinner) findViewById(R.id.prodTypeSpinner);
+//        uploadButton = (Button)findViewById(R.id.uploadButton);
+        btnselectpic = (Button)findViewById(R.id.button_selectpic);
+        messageText  = (TextView)findViewById(R.id.messageText);
+        imageview = (ImageView)findViewById(R.id.imageView_pic);
+        etxtUpload = (EditText)findViewById(R.id.etxtUpload);
+
+        btnselectpic.setOnClickListener(this);
+//        uploadButton.setOnClickListener(this);
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Uploading Image...");
+        dialog.setCancelable(false);
+        jsonObject = new JSONObject();
+
         Button buttonAddAd = (Button) findViewById(R.id.buttonAddAd);
         assert buttonAddAd != null;
-        buttonAddAd.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                addNewAd(v);
-//                Intent backIntent = new Intent(AdFormActivity.this,AdsActivity.class);
-//                startActivity(backIntent);
+//        buttonAddAd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                addNewAd(v);
+//            }
+//        });
+        buttonAddAd.setOnClickListener(this);
+        if (formMode.equals("EDIT")) {
+            addAdUrl = "http://lizunks.xicp.io:34789/trade_test/update_product.php";
+            prod_name.setText(intent.getStringExtra("name"));
+            prod_price.setText(intent.getStringExtra("price"));
+            prod_detail.setText(intent.getStringExtra("detail"));
+//            prod_type.setText(intent.getStringExtra("type"));
+            switch (intent.getStringExtra("type")) {
+                case "书籍":
+                    prod_type_sp.setSelection(0, true);
+
+                    break;
+                case "生活用品":
+                    prod_type_sp.setSelection(1, true);
+
+                    break;
+                case "娱乐用品":
+                    prod_type_sp.setSelection(2, true);
+
+                    break;
+                case "体育用品":
+                    prod_type_sp.setSelection(3, true);
+
+                    break;
+                default:
+                    prod_type_sp.setSelection(4, true);
+
+
             }
-        });
+            buttonAddAd.setText("保存修改");
+        }
     }
 
-    private void addNewAd(View v){
+    private void addNewAd(View v) {
         final String prod_name_str = prod_name.getText().toString();
         final String prod_price_str = prod_price.getText().toString();
         final String prod_detail_str = prod_detail.getText().toString();
-        StringRequest postRequest = new StringRequest(Request.Method.POST,addAdUrl,new Response.Listener<String>(){
+//        final String prod_type_str = prod_type.getText().toString();
+        final String prod_type_str = prod_type_sp.getSelectedItem().toString();
+        StringRequest postRequest = new StringRequest(Request.Method.POST, addAdUrl, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response){
+            public void onResponse(String response) {
                 prod_name.setText("");
                 prod_price.setText("");
                 prod_detail.setText("");
+//                prod_type.setText("");
                 Toast.makeText(getApplicationContext(),
                         "Data Inserted Successfully",
                         Toast.LENGTH_SHORT).show();
             }
-        },new Response.ErrorListener(){
+        }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error){
+            public void onErrorResponse(VolleyError error) {
 
             }
-        }){
+        }) {
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String,String>();
-                params.put("name",prod_name_str);
-                params.put("author_id","999");
-                params.put("price",prod_price_str);
-                params.put("detail",prod_detail_str);
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("name", prod_name_str);
+                String author_id = LoginData.getFromPrefs(AdFormActivity.this, LoginData.PREFS_LOGIN_USERID_KEY, null);
+                String author_name = LoginData.getFromPrefs(AdFormActivity.this, LoginData.PREFS_LOGIN_USERNAME_KEY, null);
+                params.put("author", author_name);
+                params.put("author_id", author_id);
+                params.put("price", prod_price_str);
+                params.put("detail", prod_detail_str);
+                params.put("type", prod_type_str);
                 return params;
             }
         };
         MySingleton.getInstance(AdFormActivity.this).addToRequestQueue(postRequest);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.button_selectpic:
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, Utils.REQCODE);
+                break;
+            case R.id.buttonAddAd:
+                final String prod_name_str = prod_name.getText().toString();
+                final String prod_price_str = prod_price.getText().toString();
+                final String prod_detail_str = prod_detail.getText().toString();
+//        final String prod_type_str = prod_type.getText().toString();
+                final String prod_type_str = prod_type_sp.getSelectedItem().toString();
+                Bitmap image = ((BitmapDrawable) imageview.getDrawable()).getBitmap();
+                dialog.show();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+                try {
+//                    jsonObject.put(Utils.imageName, etxtUpload.getText().toString().trim());
+//                    Log.e("Image name", etxtUpload.getText().toString().trim());
+                    jsonObject.put(Utils.image, encodedImage);
+                    jsonObject.put("name", prod_name_str);
+                    String author_id = LoginData.getFromPrefs(AdFormActivity.this, LoginData.PREFS_LOGIN_USERID_KEY, null);
+                    String author_name = LoginData.getFromPrefs(AdFormActivity.this, LoginData.PREFS_LOGIN_USERNAME_KEY, null);
+                    jsonObject.put("author", author_name);
+                    jsonObject.put("author_id", author_id);
+                    jsonObject.put("price", prod_price_str);
+                    jsonObject.put("detail", prod_detail_str);
+                    jsonObject.put("type", prod_type_str);
+                } catch (JSONException e) {
+                    Log.e("JSONObject Here", e.toString());
+                }
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, addAdUrl, jsonObject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject jsonObject) {
+                                prod_name.setText("");
+                                prod_price.setText("");
+                                prod_detail.setText("");
+                                Log.e("Message from server", jsonObject.toString());
+                                dialog.dismiss();
+                                messageText.setText("Image Uploaded Successfully");
+                                Toast.makeText(getApplication(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Log.e("Message from server", volleyError.toString());
+                        dialog.dismiss();
+                    }
+                });
+                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                Volley.newRequestQueue(this).add(jsonObjectRequest);
+                break;
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Utils.REQCODE && resultCode == RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            imageview.setImageURI(selectedImageUri);
+        }
     }
 }

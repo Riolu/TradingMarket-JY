@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="prodTypeSpinnerArray">
+        <item>书籍</item>
+        <item>生活用品</item>
+        <item>娱乐用品</item>
+        <item>体育用品</item>
+        <item>其它</item>
+    </string-array>
+
+    <string-array name="reqTypeSpinnerArray">
+        <item>书籍</item>
+        <item>生活用品</item>
+        <item>娱乐用品</item>
+        <item>体育用品</item>
+        <item>其它</item>
+    </string-array>
+</resources>

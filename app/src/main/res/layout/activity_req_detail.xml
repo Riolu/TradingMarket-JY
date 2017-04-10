@@ -82,11 +82,21 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SUPPLY"
+                    android:text="提供商品"
                     android:id="@+id/supply_button"
                     android:layout_gravity="right"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/req_detail_Info" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="修改需求"
+                    android:id="@+id/button_edit_req"
+                    android:layout_gravity="right"
+                    android:layout_alignBottom="@+id/supply_button"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
             </RelativeLayout>
 

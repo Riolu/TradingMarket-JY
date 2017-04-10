@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 
 
 import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.BottomBarBadge;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 public class MainNavigationActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class MainNavigationActivity extends AppCompatActivity {
     private ReqFragment reqFragment;
     private MessageFragment messageFragment;
     private AccountFragment accountFragment;
+    private int unreadMessageNum = 0;
 
 
     @Override
@@ -62,10 +64,16 @@ public class MainNavigationActivity extends AppCompatActivity {
                         ftrans.replace(R.id.navi_fragment_container,messageFragment,"message");
                         break;
                     case R.id.bb_menu_account:
-                        if (accountFragment==null){
-                            accountFragment = new AccountFragment();
+                        final String user_id = LoginData.getFromPrefs(MainNavigationActivity.this,LoginData.PREFS_LOGIN_USERID_KEY,null);
+                        if (user_id!=null){
+                            if (accountFragment==null){
+                                accountFragment = new AccountFragment();
+                            }
+                            ftrans.replace(R.id.navi_fragment_container,accountFragment,"account");
+                        } else {
+                            Intent gotoLoginIntent = new Intent(MainNavigationActivity.this,LoginActivity.class);
+                            startActivity(gotoLoginIntent);
                         }
-                        ftrans.replace(R.id.navi_fragment_container,accountFragment,"account");
                         break;
                 }
                 ftrans.commit();
@@ -102,9 +110,11 @@ public class MainNavigationActivity extends AppCompatActivity {
 
         });
         mainNaviBottomBar.mapColorForTab(0, ContextCompat.getColor(MainNavigationActivity.this, R.color.colorAccent));
-        mainNaviBottomBar.mapColorForTab(1, 0xFF5D4037);
-        mainNaviBottomBar.mapColorForTab(2, "#7B1FA2");
-        mainNaviBottomBar.mapColorForTab(3, "#FF5252");
+        mainNaviBottomBar.mapColorForTab(1, "#C6E2FF");
+        mainNaviBottomBar.mapColorForTab(2, "#C6E2FF");
+        mainNaviBottomBar.mapColorForTab(3, "#C6E2FF");
+        BottomBarBadge unreadMessages = mainNaviBottomBar.makeBadgeForTabAt(2,"#C6E2FF",0);
+        unreadMessages.show();
     }
 
     private void setDefaultFragment(){

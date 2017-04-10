@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bb_menu_ads"
-        android:icon="@android:drawable/ic_menu_gallery"
+        android:icon="@drawable/market"
         android:title="商品市场" />
     <item
         android:id="@+id/bb_menu_requirements"
-        android:icon="@android:drawable/ic_menu_crop"
+        android:icon="@drawable/req"
         android:title="求购" />
     <item
         android:id="@+id/bb_menu_messages"
@@ -14,6 +14,6 @@
         android:title="我的信息" />
     <item
         android:id="@+id/bb_menu_account"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/figure"
         android:title="个人账户" />
 </menu>

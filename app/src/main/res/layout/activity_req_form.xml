@@ -15,7 +15,7 @@
         android:id="@+id/reqTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:hint="Title"
+        android:hint="需求标题"
         android:minWidth="200dp" />
 
     <EditText
@@ -25,7 +25,7 @@
         android:id="@+id/reqBudget"
         android:layout_below="@+id/reqTitle"
         android:layout_centerHorizontal="true"
-        android:hint="Budget"
+        android:hint="预算"
         android:minWidth="200dp" />
 
     <EditText
@@ -34,14 +34,47 @@
         android:id="@+id/reqDetail"
         android:layout_below="@+id/reqBudget"
         android:layout_centerHorizontal="true"
-        android:hint="Detail Requirement"
+        android:hint="详细描述"
         android:minWidth="200dp" />
+
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/reqType"-->
+        <!--android:layout_below="@+id/reqDetail"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:hint="Type"-->
+        <!--android:minWidth="200dp" />-->
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reqTypeSpinner"
+        android:entries="@array/reqTypeSpinnerArray"
+        android:minWidth="200dp"
+        android:layout_below="@+id/reqDetail"
+        android:layout_toRightOf="@+id/textView29"
+        android:layout_alignRight="@+id/reqDetail"
+        android:layout_alignEnd="@+id/reqDetail" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
         android:id="@+id/buttonAddReq"
+        android:layout_below="@+id/reqTypeSpinner"
+        android:layout_alignRight="@+id/reqTypeSpinner"
+        android:layout_alignEnd="@+id/reqTypeSpinner"
+        android:layout_alignLeft="@+id/textView29"
+        android:layout_alignStart="@+id/textView29" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="类别："
+        android:id="@+id/textView29"
+        android:textSize="18dp"
         android:layout_below="@+id/reqDetail"
         android:layout_alignLeft="@+id/reqDetail"
         android:layout_alignStart="@+id/reqDetail" />

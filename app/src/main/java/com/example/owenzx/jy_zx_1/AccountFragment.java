@@ -1,12 +1,14 @@
 package com.example.owenzx.jy_zx_1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -26,6 +28,7 @@ public class AccountFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    String user_id;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +67,88 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
+        Button change_info_bt = (Button) view.findViewById(R.id.change_info_bt);
+        Button sale_info_bt = (Button) view.findViewById(R.id.sale_info_bt);
+        Button req_info_bt = (Button) view.findViewById(R.id.req_info_bt);
+        Button trading_info_bt = (Button) view.findViewById(R.id.trading_info_bt);
+        Button logout_bt = (Button) view.findViewById(R.id.button_logout);
+
+//        final String user_id=intent_id.getStringExtra("userid");
+        user_id = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
+
+        change_info_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent11=new Intent(Info_Activity.this,Per_info_Activity.class);
+                //Intent intent_id=getIntent();
+                //String user_id=intent_id.getStringExtra("userid");
+                Intent intent_id1=new Intent();
+                intent_id1.setClass(getActivity(),Per_info_Activity.class);
+                intent_id1.putExtra("userid",user_id);
+                startActivity(intent_id1);
+                //startActivity(intent11);
+            }
+        });
+        sale_info_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent12=new Intent(Info_Activity.this,Per_Sale_Activity.class);
+                Intent intent_id2=new Intent();
+                intent_id2.setClass(getActivity(),Per_Sale_Activity.class);
+                intent_id2.putExtra("userid",user_id);
+                startActivity(intent_id2);
+                //startActivity(intent12);
+            }
+        });
+        req_info_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent_id=getIntent();
+                //String user_id=intent_id.getStringExtra("userid");
+                //Intent intent13=new Intent(Info_Activity.this,Per_Req_Activity.class);
+                //startActivity(intent13);
+                Intent intent_id3=new Intent();
+                intent_id3.setClass(getActivity(),Per_Req_Activity.class);
+                intent_id3.putExtra("userid",user_id);
+                startActivity(intent_id3);
+            }
+        });
+        trading_info_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent_id=getIntent();
+                //String user_id=intent_id.getStringExtra("userid");
+                Intent intent_id4=new Intent();
+                intent_id4.setClass(getActivity(),Per_Buy_Activity.class);
+                intent_id4.putExtra("userid",user_id);
+                startActivity(intent_id4);
+                //Intent intent14=new Intent(Info_Activity.this,Per_Buy_Activity.class);
+                //startActivity(intent14);
+            }
+        });
+
+        logout_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginData.saveToPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
+                LoginData.saveToPrefs(getActivity(),LoginData.PREFS_LOGIN_USERNAME_KEY,null);
+                LoginData.saveToPrefs(getActivity(),LoginData.PREFS_LOGIN_PASSWORD_KEY,null);
+                Intent loginIntent = new Intent(getActivity(),LoginActivity.class);
+                startActivity(loginIntent);
+            }
+        });
+
+        return view;
     }
+
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        user_id = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

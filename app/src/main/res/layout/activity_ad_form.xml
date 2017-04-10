@@ -9,14 +9,53 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AdFormActivity">
 
+    <ImageView
+        android:id="@+id/imageView_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher"
+        android:layout_alignRight="@+id/button_selectpic"
+        android:layout_alignEnd="@+id/button_selectpic"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/button_selectpic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView_pic"
+        android:text="Select Picture" />
+
+    <!--<Button-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Click To Upload File"-->
+        <!--android:layout_below="@+id/button_selectpic"-->
+        <!--android:id="@+id/uploadButton"-->
+        <!--/>-->
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/button_selectpic"
+        android:id="@+id/messageText"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/prodName"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:hint="Product Name"
-        android:minWidth="200dp" />
+        android:layout_below="@id/messageText"
+        android:hint="产品名"
+        android:minWidth="200dp"
+        android:layout_alignRight="@+id/messageText"
+        android:layout_alignEnd="@+id/messageText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -24,24 +63,63 @@
         android:inputType="numberDecimal"
         android:id="@+id/prodPrice"
         android:layout_below="@+id/prodName"
-        android:layout_centerHorizontal="true"
-        android:hint="Price"
-        android:minWidth="200dp" />
+        android:hint="价格"
+        android:minWidth="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/prodName"
+        android:layout_alignEnd="@+id/prodName" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/prodDetail"
         android:layout_below="@+id/prodPrice"
-        android:layout_centerHorizontal="true"
-        android:hint="Detail Description"
-        android:minWidth="200dp" />
+        android:hint="详细描述"
+        android:minWidth="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/prodPrice"
+        android:layout_alignEnd="@+id/prodPrice" />
+
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/prodType"-->
+        <!--android:layout_below="@+id/prodDetail"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:hint="类别"-->
+        <!--android:minWidth="200dp" />-->
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/prodTypeSpinner"
+        android:entries="@array/prodTypeSpinnerArray"
+        android:minWidth="200dp"
+        android:layout_below="@+id/prodDetail"
+        android:layout_toRightOf="@+id/textView28"
+        android:layout_alignRight="@+id/prodDetail"
+        android:layout_alignEnd="@+id/prodDetail" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
+        android:text="添加"
         android:id="@+id/buttonAddAd"
+        android:layout_below="@+id/prodTypeSpinner"
+        android:layout_alignLeft="@+id/textView28"
+        android:layout_alignStart="@+id/textView28"
+        android:layout_alignRight="@+id/prodTypeSpinner"
+        android:layout_alignEnd="@+id/prodTypeSpinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="类别："
+        android:id="@+id/textView28"
+        android:textSize="18dp"
         android:layout_below="@+id/prodDetail"
         android:layout_alignLeft="@+id/prodDetail"
         android:layout_alignStart="@+id/prodDetail" />
