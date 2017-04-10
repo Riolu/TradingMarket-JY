@@ -71,8 +71,9 @@ public class AdsActivity extends AppCompatActivity
 //        }
 //    };
 
-    final String adsMainUrl = "http://lizunks.xicp.io:34650/trade_test/all_product.php";
-    final String getTypeUrl = "http://lizunks.xicp.io:34650/trade_test/search_type.php";
+    final String adsMainUrl = "http://lizunks.xicp.io:34789/trade_test/all_product.php";
+    final String getTypeUrl = "http://lizunks.xicp.io:34789/trade_test/search_type.php";
+    final String searchAdUrl = "http://lizunks.xicp.io:34789/trade_test/search_product.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -389,8 +390,54 @@ public class AdsActivity extends AppCompatActivity
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use te query to do sth.
-            Intent intent2 = new Intent(AdsActivity.this, AdsSearchActivity.class);
-            startActivity(intent2);
+
+            final ArrayList<HashMap<String,String>> prodList = new ArrayList<HashMap<String, String>>();
+
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("name", query);
+
+
+            CustomRequest adsreq = new CustomRequest(Request.Method.POST,searchAdUrl,params, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        int success = response.getInt("success");
+                        if (success == 1){
+                            JSONArray ja = response.getJSONArray("posts");
+                            for (int i=0; i<ja.length(); ++i){
+                                JSONObject jsonpost = ja.getJSONObject(i);
+                                String productID = jsonpost.getString("pd_id");
+                                String prodName = jsonpost.getString("name");
+                                String prodPrice = jsonpost.getString("price");
+                                String prodDetail = jsonpost.getString("detail");
+                                HashMap<String,String> prod = new HashMap<String, String>();
+                                prod.put("pd_id",productID);
+                                prod.put("name",prodName);
+                                prod.put("price",prodPrice);
+                                prod.put("detail",prodDetail);
+                                prodList.add(prod);
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    String [] from = {"name","price","detail"};
+                    int[] to = {R.id.pd_title,R.id.pd_price,R.id.pd_detail};
+                    adapter = new SimpleAdapter(getApplicationContext(),prodList,R.layout.list_item_adsnew,from,to);
+                    listView_ad.setAdapter(adapter);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+//            MySingleton.getInstance().getRequestQueue().;
+            MySingleton.getInstance(AdsActivity.this).addToRequestQueue(adsreq);
+
+//
+//            Intent intent2 = new Intent(AdsActivity.this, AdsSearchActivity.class);
+//            startActivity(intent2);
         }
     }
 }

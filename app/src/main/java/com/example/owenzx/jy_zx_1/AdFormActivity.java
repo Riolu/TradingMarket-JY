@@ -18,16 +18,16 @@ import java.util.Map;
 
 public class AdFormActivity extends AppCompatActivity {
 
-    String addAdUrl = "http://lizunks.xicp.io:34789/webservice/addcomment.php";
-    EditText com_user, com_title,com_mes;
+    String addAdUrl = "http://lizunks.xicp.io:34789/trade_test/add_product.php";
+    EditText prod_name, prod_price,prod_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_form);
-        com_user = (EditText)findViewById(R.id.comUser);
-        com_title = (EditText)findViewById(R.id.comTitle);
-        com_mes = (EditText)findViewById(R.id.comMes);
+        prod_name = (EditText)findViewById(R.id.prodName);
+        prod_price = (EditText)findViewById(R.id.prodPrice);
+        prod_detail = (EditText)findViewById(R.id.prodDetail);
         Button buttonAddAd = (Button) findViewById(R.id.buttonAddAd);
         assert buttonAddAd != null;
         buttonAddAd.setOnClickListener(new View.OnClickListener(){
@@ -41,15 +41,15 @@ public class AdFormActivity extends AppCompatActivity {
     }
 
     private void addNewAd(View v){
-        final String com_user_str = com_user.getText().toString();
-        final String com_title_str = com_title.getText().toString();
-        final String com_mes_str = com_mes.getText().toString();
+        final String prod_name_str = prod_name.getText().toString();
+        final String prod_price_str = prod_price.getText().toString();
+        final String prod_detail_str = prod_detail.getText().toString();
         StringRequest postRequest = new StringRequest(Request.Method.POST,addAdUrl,new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
-                com_user.setText("");
-                com_title.setText("");
-                com_mes.setText("");
+                prod_name.setText("");
+                prod_price.setText("");
+                prod_detail.setText("");
                 Toast.makeText(getApplicationContext(),
                         "Data Inserted Successfully",
                         Toast.LENGTH_SHORT).show();
@@ -63,9 +63,10 @@ public class AdFormActivity extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String,String>();
-                params.put("username",com_user_str);
-                params.put("title",com_title_str);
-                params.put("message",com_mes_str);
+                params.put("name",prod_name_str);
+                params.put("author_id","999");
+                params.put("price",prod_price_str);
+                params.put("detail",prod_detail_str);
                 return params;
             }
         };

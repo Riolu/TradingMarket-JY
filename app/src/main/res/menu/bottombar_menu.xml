@@ -3,17 +3,17 @@
     <item
         android:id="@+id/bb_menu_ads"
         android:icon="@android:drawable/ic_menu_gallery"
-        android:title="Recents" />
+        android:title="商品市场" />
     <item
         android:id="@+id/bb_menu_requirements"
-        android:icon="@android:drawable/ic_menu_send"
-        android:title="Favorites" />
+        android:icon="@android:drawable/ic_menu_crop"
+        android:title="求购" />
     <item
         android:id="@+id/bb_menu_messages"
-        android:icon="@android:drawable/ic_menu_call"
-        android:title="Nearby" />
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="我的信息" />
     <item
         android:id="@+id/bb_menu_account"
         android:icon="@android:drawable/ic_menu_manage"
-        android:title="Friends" />
+        android:title="个人账户" />
 </menu>

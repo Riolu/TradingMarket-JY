@@ -12,28 +12,29 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/comUser"
+        android:id="@+id/prodName"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:hint="Username"
+        android:hint="Product Name"
         android:minWidth="200dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/comTitle"
-        android:layout_below="@+id/comUser"
+        android:inputType="numberDecimal"
+        android:id="@+id/prodPrice"
+        android:layout_below="@+id/prodName"
         android:layout_centerHorizontal="true"
-        android:hint="Title"
+        android:hint="Price"
         android:minWidth="200dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/comMes"
-        android:layout_below="@+id/comTitle"
+        android:id="@+id/prodDetail"
+        android:layout_below="@+id/prodPrice"
         android:layout_centerHorizontal="true"
-        android:hint="Message"
+        android:hint="Detail Description"
         android:minWidth="200dp" />
 
     <Button
@@ -41,7 +42,8 @@
         android:layout_height="wrap_content"
         android:text="Add"
         android:id="@+id/buttonAddAd"
-        android:layout_below="@+id/comMes"
-        android:layout_alignLeft="@+id/comMes"
-        android:layout_alignStart="@+id/comMes" />
+        android:layout_below="@+id/prodDetail"
+        android:layout_alignLeft="@+id/prodDetail"
+        android:layout_alignStart="@+id/prodDetail" />
+
 </RelativeLayout>
