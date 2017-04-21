@@ -50,14 +50,14 @@ public class Per_Buy_Activity extends AppCompatActivity {
                     int success = response.getInt("success");
                     if (success == 1){
                         Toast.makeText(getApplicationContext(),
-                                "!!!",
+                                "购买信息获取成功",
                                 Toast.LENGTH_SHORT).show();
                         JSONArray ja = response.getJSONArray("posts");
                         handleJSONArray(ja);
                     }
                     else{
                         Toast.makeText(getApplicationContext(),
-                                "no record",
+                                "没有购买记录",
                                 Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {

@@ -13,6 +13,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -21,7 +23,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -67,6 +68,8 @@ public class AdsFragment extends Fragment
     final ArrayList<HashMap<String,String>> prodList = new ArrayList<HashMap<String, String>>();
     private ListAdapter adapter;
     private ListView listView_ad;
+    private RecyclerView mRecyclerView;
+    private PdAdapter mAdapter;
     private CustomRequest adsreq;
     private Activity act;
 
@@ -172,31 +175,37 @@ public class AdsFragment extends Fragment
 //        while(prodList.isEmpty()){
 //            int i =1;
 //        }
-        listView_ad = (ListView) view.findViewById(R.id.listview_ad);
-        listView_ad.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
 
-                String mUserid = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
-                if (mUserid!=null){
-                    Intent intent = new Intent(getActivity(),AdDetailActivity.class).putExtra("pd_id",prodList.get(pos).get("pd_id"));
-                    intent.putExtra("name",prodList.get(pos).get("name"));
-                    intent.putExtra("price",prodList.get(pos).get("price"));
-                    intent.putExtra("detail",prodList.get(pos).get("detail"));
-                    intent.putExtra("author_id",prodList.get(pos).get("author_id"));
-                    intent.putExtra("author",prodList.get(pos).get("author"));
-                    intent.putExtra("type",prodList.get(pos).get("type"));
-                    intent.putExtra("image_url",prodList.get(pos).get("image_url"));
-                    startActivity(intent);
-                } else{
-                    Intent loginIntent = new Intent(getActivity(),LoginActivity.class);
-                    startActivity(loginIntent);
-                }
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.pd_recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(act));
+        mRecyclerView.setHasFixedSize(true);
 
-//                String adDetail = adapter.getItem(pos);
 
-            }
-        });
+//        listView_ad = (ListView) view.findViewById(R.id.listview_ad);
+//        listView_ad.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+//
+//                String mUserid = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
+//                if (mUserid!=null){
+//                    Intent intent = new Intent(getActivity(),AdDetailActivity.class).putExtra("pd_id",prodList.get(pos).get("pd_id"));
+//                    intent.putExtra("name",prodList.get(pos).get("name"));
+//                    intent.putExtra("price",prodList.get(pos).get("price"));
+//                    intent.putExtra("detail",prodList.get(pos).get("detail"));
+//                    intent.putExtra("author_id",prodList.get(pos).get("author_id"));
+//                    intent.putExtra("author",prodList.get(pos).get("author"));
+//                    intent.putExtra("type",prodList.get(pos).get("type"));
+//                    intent.putExtra("image_url",prodList.get(pos).get("image_url"));
+//                    startActivity(intent);
+//                } else{
+//                    Intent loginIntent = new Intent(getActivity(),LoginActivity.class);
+//                    startActivity(loginIntent);
+//                }
+//
+////                String adDetail = adapter.getItem(pos);
+//
+//            }
+//        });
         assert(adsreq!=null);
         MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(adsreq);
 
@@ -551,12 +560,37 @@ public class AdsFragment extends Fragment
                 prod.put("image_url",imageUrl);
                 prodList.add(prod);
             }
-            String [] from = {"name","price","detail"};
-            int[] to = {R.id.pd_title,R.id.pd_price,R.id.pd_detail};
-            assert(getActivity()!=null);
-//            adapter = new SimpleAdapter(act,prodList,R.layout.list_item_adsnew,from,to);
-            adapter = new MySimpleAdapter(act,prodList,R.layout.list_item_adsnew,from,to);
-            listView_ad.setAdapter(adapter);
+            mAdapter = new PdAdapter(prodList,getActivity());
+            mRecyclerView.setAdapter(mAdapter);
+            mAdapter.setOnItemClickListener(new PdAdapter.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(View view, HashMap<String,String> tag) {
+                    //Toast.makeText(CommentMessageActivity.this,data,Toast.LENGTH_SHORT).show();
+                    String mUserid = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
+                    if (mUserid!=null){
+                        Intent intent = new Intent(getActivity(),AdDetailActivity.class);
+                        intent.putExtra("pd_id",tag.get("pd_id"));
+                        intent.putExtra("name",tag.get("name"));
+                        intent.putExtra("price",tag.get("price"));
+                        intent.putExtra("detail",tag.get("detail"));
+                        intent.putExtra("author_id",tag.get("author_id"));
+                        intent.putExtra("author",tag.get("author"));
+                        intent.putExtra("type",tag.get("type"));
+                        intent.putExtra("image_url",tag.get("image_url"));
+                        startActivity(intent);
+                    } else{
+                        Intent loginIntent = new Intent(getActivity(),LoginActivity.class);
+                        startActivity(loginIntent);
+                    }
+                }
+            });
+//            String [] from = {"name","price","detail"};
+//            int[] to = {R.id.pd_title,R.id.pd_price,R.id.pd_detail};
+//            assert(getActivity()!=null);
+////            adapter = new SimpleAdapter(act,prodList,R.layout.list_item_adsnew,from,to);
+//            adapter = new MySimpleAdapter(act,prodList,R.layout.list_item_adsnew,from,to);
+//            listView_ad.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();
 //            String [] from = {"name","price","detail"};
@@ -567,4 +601,5 @@ public class AdsFragment extends Fragment
         }
 
     }
+
 }

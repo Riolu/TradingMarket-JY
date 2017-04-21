@@ -76,7 +76,7 @@ public class Per_Sale_Activity extends AppCompatActivity {
                     int success = response.getInt("success");
                     if (success == 1){
                         Toast.makeText(getApplicationContext(),
-                                "!!!",
+                                "出售信息获取成功",
                                 Toast.LENGTH_SHORT).show();
                         JSONArray ja = response.getJSONArray("posts");
                         handleJSONArray(ja);

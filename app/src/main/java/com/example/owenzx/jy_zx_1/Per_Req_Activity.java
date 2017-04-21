@@ -79,7 +79,7 @@ public class Per_Req_Activity extends AppCompatActivity {
                     int success = response.getInt("success");
                     if (success == 1){
                         Toast.makeText(getApplicationContext(),
-                                "!!!",
+                                "需求信息获取成功",
                                 Toast.LENGTH_SHORT).show();
                         JSONArray ja = response.getJSONArray("posts");
                         handleJSONArray(ja);

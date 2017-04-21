@@ -329,12 +329,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+//            try {
+//                // Simulate network access.
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                return false;
+//            }
             String addAdUrl = "http://lizunks.xicp.io:34789/trade_test/login.php";
 
             //for (String credential : DUMMY_CREDENTIALS) {
@@ -346,7 +346,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //}
 
 
-            final ArrayList<HashMap<String,String>> prodList = new ArrayList<HashMap<String, String>>();
             Map<String, String> param = new HashMap<String, String>();
             param.put("password", mPassword);
             param.put("username", mUser_id);
@@ -364,9 +363,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             String user_name = jsonpost.getString("name");
                             LoginData.saveToPrefs(LoginActivity.this, LoginData.PREFS_LOGIN_USERID_KEY,user_id);
                             LoginData.saveToPrefs(LoginActivity.this, LoginData.PREFS_LOGIN_USERNAME_KEY,user_name);
-                            Toast.makeText(getApplicationContext(),
-                                    user_id,
-                                    Toast.LENGTH_SHORT).show();
+
 //                            Intent intent_id=new Intent();
 //                            intent_id.setClass(LoginActivity.this,Info_Activity.class);
 //                            intent_id.putExtra("userid",user_id);
@@ -376,7 +373,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             mPasswordView.setText("");
 
                             Toast.makeText(getApplicationContext(),
-                                    "Login Successfully",
+                                    "登录成功！",
                                     Toast.LENGTH_SHORT).show();
                             finish();
                         }
@@ -385,7 +382,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             mPasswordView.setText("");
 
                             Toast.makeText(getApplicationContext(),
-                                    "Login Unsuccessfully",
+                                    "用户名或密码错误，请重试",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }catch (JSONException e) {
@@ -418,7 +415,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                finish();
+//                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

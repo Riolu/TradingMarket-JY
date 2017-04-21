@@ -527,7 +527,7 @@ public class ReqFragment extends Fragment
                 String reqTitle = jsonpost.getString("title");
                 String reqBudget = jsonpost.getString("ideal_price");
                 String reqDetail = jsonpost.getString("description");
-//                String reqType = jsonpost.getString("type");
+                String reqType = jsonpost.getString("type");
                 String authorID = jsonpost.getString("author_id");
                 String authorName = jsonpost.getString("author");
                 HashMap<String, String> prod = new HashMap<String, String>();
@@ -537,7 +537,7 @@ public class ReqFragment extends Fragment
                 prod.put("description", reqDetail);
                 prod.put("author_id",authorID);
                 prod.put("author",authorName);
-//                prod.put("type",reqType);
+                prod.put("type",reqType);
                 reqList.add(prod);
 
                 String[] from = {"title", "ideal_price", "description"};

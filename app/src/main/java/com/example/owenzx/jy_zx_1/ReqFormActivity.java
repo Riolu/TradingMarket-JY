@@ -35,7 +35,6 @@ public class ReqFormActivity extends AppCompatActivity {
         req_title = (EditText)findViewById(R.id.reqTitle);
         req_budget = (EditText)findViewById(R.id.reqBudget);
         req_detail = (EditText)findViewById(R.id.reqDetail);
-//        req_type = (EditText)findViewById(R.id.reqType);
         req_type_sp = (Spinner) findViewById(R.id.reqTypeSpinner);
         Button buttonAddReq = (Button) findViewById(R.id.buttonAddReq);
         assert buttonAddReq != null;
@@ -51,7 +50,6 @@ public class ReqFormActivity extends AppCompatActivity {
             req_title.setText(intent.getStringExtra("name"));
             req_budget.setText(intent.getStringExtra("price"));
             req_detail.setText(intent.getStringExtra("detail"));
-//            req_type.setText(intent.getStringExtra("type"));
             switch (intent.getStringExtra("type")) {
                 case "书籍":
                     req_type_sp.setSelection(0, true);

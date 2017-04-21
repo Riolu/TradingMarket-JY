@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
@@ -36,6 +38,7 @@ public class AdDetailActivity extends AppCompatActivity {
     String addDealUrl = "http://lizunks.xicp.io:34789/trade_test/add_deal.php";
     String addCommentUrl = "http://lizunks.xicp.io:34789/trade_test/add_comment.php";
     String updateAdUrl = "http://lizunks.xicp.io:34789/trade_test/update_product.php";
+    String deleteUrl = "http://lizunks.xicp.io:34789/trade_test/delete_product.php";
     ListView listView_comment;
     public static ArrayList<HashMap<String,String>> CommentList = new ArrayList<HashMap<String, String>>();
 
@@ -150,11 +153,13 @@ public class AdDetailActivity extends AppCompatActivity {
         });
 
 
-
+        Button buttonDel = (Button) findViewById(R.id.button_del_prod);
+        assert buttonDel!= null;
         Button buttonEdit = (Button) findViewById(R.id.button_edit_ad);
         assert buttonEdit != null;
         if (!userid.equals(authorID)){
             buttonEdit.setVisibility(View.GONE);
+            buttonDel.setVisibility(View.GONE);
         }
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,11 +170,61 @@ public class AdDetailActivity extends AppCompatActivity {
                 editIntent.putExtra("price",prodPrice);
                 editIntent.putExtra("detail",prodDetail);
                 editIntent.putExtra("type",prodType);
-
+                editIntent.putExtra("image_url",prodImageUrl);
                 startActivity(editIntent);
             }
         });
 
+
+        buttonDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AdDetailActivity.this);
+                builder.setIcon(R.drawable.ic_menu_gallery);
+                builder.setTitle("警告");
+                builder.setMessage("确定删除本商品吗？此操作无法撤销");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        //Toast.makeText(AdDetailActivity.this, "positive: " + which, Toast.LENGTH_SHORT).show();
+                        StringRequest postRequest = new StringRequest(Request.Method.POST,deleteUrl,new Response.Listener<String>(){
+                            @Override
+                            public void onResponse(String response){
+                                Toast.makeText(getApplicationContext(),"商品已成功删除",Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        },new Response.ErrorListener(){
+                            @Override
+                            public void onErrorResponse(VolleyError error){
+
+                            }
+                        }){
+                            @Override
+                            protected Map<String,String> getParams(){
+                                Map<String,String> params = new HashMap<String,String>();
+
+                                params.put("pd_id",prodID);
+                                return params;
+                            }
+                        };
+                        MySingleton.getInstance(AdDetailActivity.this).addToRequestQueue(postRequest);
+                    }
+                });
+                //    设置一个NegativeButton
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        //Toast.makeText(AdDetailActivity.this, "negative: " + which, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                //    显示出该对话框
+                builder.show();
+            }
+        });
 
         //购买按钮
         Button buttonBuy = (Button) findViewById(R.id.buy_button);
@@ -288,6 +343,14 @@ public class AdDetailActivity extends AppCompatActivity {
         MySingleton.getInstance(AdDetailActivity.this).addToRequestQueue(adsreq);
 
 
+        TextView complainText = (TextView) findViewById(R.id.text_complain);
+        assert complainText!= null;
+        complainText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
         //添加回复（给商品的卖家）
@@ -353,6 +416,9 @@ public class AdDetailActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+        ImageLoader mImageLoader = MySingleton.getInstance(AdDetailActivity.this).getImageLoader();
+        mImageLoader.get(prodImageUrl,ImageLoader.getImageListener(((ImageView) findViewById(R.id.pic)),
+                R.drawable.ic_menu_gallery, R.drawable.figure));
 
     }
 

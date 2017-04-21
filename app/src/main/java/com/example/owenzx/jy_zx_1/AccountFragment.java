@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -76,7 +77,9 @@ public class AccountFragment extends Fragment {
 
 //        final String user_id=intent_id.getStringExtra("userid");
         user_id = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
-
+        final String selfname=LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERNAME_KEY,null);
+        TextView text=(TextView)view.findViewById(R.id.textView36);
+        text.setText(selfname);
         change_info_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

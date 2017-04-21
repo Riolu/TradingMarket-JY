@@ -4,22 +4,18 @@ package com.example.owenzx.jy_zx_1;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +48,7 @@ public class AcceptTradeActivity extends AppCompatActivity {
     String Detail;
     String AuthorID;
     String Author;
+    String ImgUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,6 +238,7 @@ public class AcceptTradeActivity extends AppCompatActivity {
                             Detail = jsonpost.getString("detail");
                             AuthorID = jsonpost.getString("author_id");
                             Author = jsonpost.getString("author");
+                            ImgUrl = jsonpost.getString("image_url");
                         }
                         Intent intent = new Intent(AcceptTradeActivity.this, AdDetailActivity.class);
                         intent.putExtra("pd_id", pd_or_req_id);
@@ -249,6 +247,7 @@ public class AcceptTradeActivity extends AppCompatActivity {
                         intent.putExtra("detail", Detail);
                         intent.putExtra("author_id", AuthorID);
                         intent.putExtra("author", Author);
+                        intent.putExtra("image_url",ImgUrl);
                         startActivity(intent);
                     }
                 } catch (JSONException e) {
@@ -281,6 +280,7 @@ public class AcceptTradeActivity extends AppCompatActivity {
                             Detail = jsonpost.getString("description");
                             AuthorID = jsonpost.getString("author_id");
                             Author = jsonpost.getString("author");
+
                         }
                         Intent intent = new Intent(AcceptTradeActivity.this, ReqDetailActivity.class);
                         intent.putExtra("req_id", pd_or_req_id);

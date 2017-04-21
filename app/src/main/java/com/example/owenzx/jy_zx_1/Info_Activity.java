@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Info_Activity extends AppCompatActivity {
 
@@ -18,7 +19,9 @@ public class Info_Activity extends AppCompatActivity {
         Button trading_info_bt = (Button) findViewById(R.id.trading_info_bt);
         Intent intent_id=getIntent();
         final String user_id=intent_id.getStringExtra("userid");
-
+        final String selfname=LoginData.getFromPrefs(Info_Activity.this,LoginData.PREFS_LOGIN_USERNAME_KEY,null);
+        TextView text=(TextView)findViewById(R.id.textView36);
+        text.setText(selfname);
         change_info_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -28,12 +28,12 @@
         android:text="Select Picture" />
 
     <!--<Button-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Click To Upload File"-->
-        <!--android:layout_below="@+id/button_selectpic"-->
-        <!--android:id="@+id/uploadButton"-->
-        <!--/>-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Click To Upload File"-->
+    <!--android:layout_below="@+id/button_selectpic"-->
+    <!--android:id="@+id/uploadButton"-->
+    <!--/>-->
 
     <TextView
         android:layout_width="fill_parent"
@@ -83,13 +83,13 @@
         android:layout_alignEnd="@+id/prodPrice" />
 
     <!--<EditText-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/prodType"-->
-        <!--android:layout_below="@+id/prodDetail"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:hint="类别"-->
-        <!--android:minWidth="200dp" />-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/prodType"-->
+    <!--android:layout_below="@+id/prodDetail"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:hint="类别"-->
+    <!--android:minWidth="200dp" />-->
 
     <Spinner
         android:layout_width="wrap_content"

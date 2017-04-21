@@ -14,9 +14,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/reqTitle"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:hint="需求标题"
-        android:minWidth="200dp" />
+        android:minWidth="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -24,18 +27,24 @@
         android:inputType="numberDecimal"
         android:id="@+id/reqBudget"
         android:layout_below="@+id/reqTitle"
-        android:layout_centerHorizontal="true"
         android:hint="预算"
-        android:minWidth="200dp" />
+        android:minWidth="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/reqTitle"
+        android:layout_alignEnd="@+id/reqTitle" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/reqDetail"
         android:layout_below="@+id/reqBudget"
-        android:layout_centerHorizontal="true"
         android:hint="详细描述"
-        android:minWidth="200dp" />
+        android:minWidth="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/reqBudget"
+        android:layout_alignEnd="@+id/reqBudget" />
 
     <!--<EditText-->
         <!--android:layout_width="wrap_content"-->

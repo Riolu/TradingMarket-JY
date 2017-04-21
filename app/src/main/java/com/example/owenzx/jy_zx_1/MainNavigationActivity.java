@@ -109,11 +109,11 @@ public class MainNavigationActivity extends AppCompatActivity {
             }
 
         });
-        mainNaviBottomBar.mapColorForTab(0, ContextCompat.getColor(MainNavigationActivity.this, R.color.colorAccent));
-        mainNaviBottomBar.mapColorForTab(1, "#C6E2FF");
-        mainNaviBottomBar.mapColorForTab(2, "#C6E2FF");
-        mainNaviBottomBar.mapColorForTab(3, "#C6E2FF");
-        BottomBarBadge unreadMessages = mainNaviBottomBar.makeBadgeForTabAt(2,"#C6E2FF",0);
+        mainNaviBottomBar.mapColorForTab(0, "#1874CD");
+        mainNaviBottomBar.mapColorForTab(1, "#1874CD");
+        mainNaviBottomBar.mapColorForTab(2, "#1874CD");
+        mainNaviBottomBar.mapColorForTab(3, "#1874CD");
+        BottomBarBadge unreadMessages = mainNaviBottomBar.makeBadgeForTabAt(2,"#FF0000",0);
         unreadMessages.show();
     }
 

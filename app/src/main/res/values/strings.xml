@@ -8,7 +8,7 @@
     <string name="action_about">About</string>
 
     <string name="search_ad_hint">Ad</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">用户登录</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

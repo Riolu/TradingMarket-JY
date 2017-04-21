@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Detailed Info"
+                    android:text="Detailed Info1111111111111111111111111111111111111111111111"
                     android:id="@+id/ad_detail_Info"
                     android:textColor="#000000"
                     android:textSize="20sp"
@@ -111,6 +111,30 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignLeft="@+id/pic"
                     android:layout_alignStart="@+id/pic" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="删除商品"
+                    android:id="@+id/button_del_prod"
+                    android:layout_gravity="right"
+                    android:layout_below="@+id/ad_price"
+                    android:layout_alignRight="@+id/ad_price"
+                    android:layout_alignEnd="@+id/ad_price"
+                    android:backgroundTintMode="src_over" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="商品与文字不符？\n点击此处投诉"
+                    android:id="@+id/text_complain"
+                    android:textSize="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/ad_name"
+                    android:layout_toEndOf="@+id/ad_name"
+                    android:textColor="#ef6c00" />
 
             </RelativeLayout>
 
