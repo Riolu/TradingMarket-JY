@@ -13,6 +13,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -67,6 +69,8 @@ public class ReqFragment extends Fragment
     final ArrayList<HashMap<String,String>> reqList = new ArrayList<HashMap<String, String>>();
     private ListAdapter adapter;
     private ListView listView_req;
+    private RecyclerView mRecyclerView;
+    private ReqAdapter mAdapter;
     private CustomRequest reqReq;
     private Activity act;
 
@@ -165,33 +169,12 @@ public class ReqFragment extends Fragment
 
         NavigationView navigationView = (NavigationView) view.findViewById(R.id.nav_view_reqs);
         navigationView.setNavigationItemSelectedListener(this);
-        // Inflate the layout for this fragment
-//        while(prodList.isEmpty()){
-//            int i =1;
-//        }
-        listView_req = (ListView) view.findViewById(R.id.listview_req);
-        listView_req.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                String mUserid = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
-                if (mUserid!=null){
-                    //                String adDetail = adapter.getItem(pos);
-                    Intent intent = new Intent(getActivity(),ReqDetailActivity.class).putExtra("req_id",reqList.get(pos).get("req_id"));
-                    intent.putExtra("title",reqList.get(pos).get("title"));
-                    intent.putExtra("ideal_price",reqList.get(pos).get("ideal_price"));
-                    intent.putExtra("description",reqList.get(pos).get("description"));
-                    intent.putExtra("author_id",reqList.get(pos).get("author_id"));
-                    intent.putExtra("author",reqList.get(pos).get("author"));
-                    intent.putExtra("type",reqList.get(pos).get("type"));
-                    startActivity(intent);
-                }else{
-                    Intent loginIntent = new Intent(getActivity(),LoginActivity.class);
-                    startActivity(loginIntent);
-                }
 
 
-            }
-        });
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.req_recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(act));
+        mRecyclerView.setHasFixedSize(true);
+
         assert(reqReq!=null);
         MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(reqReq);
 
@@ -527,7 +510,7 @@ public class ReqFragment extends Fragment
                 String reqTitle = jsonpost.getString("title");
                 String reqBudget = jsonpost.getString("ideal_price");
                 String reqDetail = jsonpost.getString("description");
-                String reqType = jsonpost.getString("type");
+//                String reqType = jsonpost.getString("type");
                 String authorID = jsonpost.getString("author_id");
                 String authorName = jsonpost.getString("author");
                 HashMap<String, String> prod = new HashMap<String, String>();
@@ -537,16 +520,34 @@ public class ReqFragment extends Fragment
                 prod.put("description", reqDetail);
                 prod.put("author_id",authorID);
                 prod.put("author",authorName);
-                prod.put("type",reqType);
+//                prod.put("type",reqType);
                 reqList.add(prod);
-
-                String[] from = {"title", "ideal_price", "description"};
-                int[] to = {R.id.req_title, R.id.req_budget, R.id.req_detail};
-                assert (getActivity() != null);
-                adapter = new SimpleAdapter(act, reqList, R.layout.list_item_reqsnew, from, to);
-                listView_req.setAdapter(adapter);
-
             }
+
+            mAdapter = new ReqAdapter(reqList,act);
+            mRecyclerView.setAdapter(mAdapter);
+            mAdapter.setOnItemClickListener(new ReqAdapter.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(View view, HashMap<String,String> tag) {
+                    //Toast.makeText(CommentMessageActivity.this,data,Toast.LENGTH_SHORT).show();
+                    String mUserid = LoginData.getFromPrefs(getActivity(),LoginData.PREFS_LOGIN_USERID_KEY,null);
+                    if (mUserid!=null){
+                        Intent intent = new Intent(getActivity(),ReqDetailActivity.class);
+                        intent.putExtra("req_id",tag.get("req_id"));
+                        intent.putExtra("title",tag.get("title"));
+                        intent.putExtra("ideal_price",tag.get("ideal_price"));
+                        intent.putExtra("description",tag.get("description"));
+                        intent.putExtra("author_id",tag.get("author_id"));
+                        intent.putExtra("author",tag.get("author"));
+                        intent.putExtra("type",tag.get("type"));
+                        startActivity(intent);
+                    }else{
+                        Intent loginIntent = new Intent(getActivity(),LoginActivity.class);
+                        startActivity(loginIntent);
+                    }
+                }
+            });
         }catch (JSONException e) {
             e.printStackTrace();
         }

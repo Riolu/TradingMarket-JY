@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\AndroidProjects\JY_x\JY_x\JY_x\bottom-bar\src\main\assets"/><source path="D:\AndroidProjects\JY_x\JY_x\JY_x\bottom-bar\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\AndroidProjects\JY_x\JY_x\JY_x\bottom-bar\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\DELL-PC\AndroidStudioProjects\JY_x\bottom-bar\src\main\assets"/><source path="C:\Users\DELL-PC\AndroidStudioProjects\JY_x\bottom-bar\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="C:\Users\DELL-PC\AndroidStudioProjects\JY_x\bottom-bar\src\release\assets"/></dataSet></merger>

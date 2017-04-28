@@ -3,7 +3,8 @@
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollView"
-    android:background="#eeeeee">
+    android:background="#eeeeee"
+    android:fillViewport="false">
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -38,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="Product Name"
                     android:id="@+id/ad_name"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textColor="#000000"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
@@ -58,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Detailed Info1111111111111111111111111111111111111111111111"
+                    android:text="Detailed Info"
                     android:id="@+id/ad_detail_Info"
                     android:textColor="#000000"
                     android:textSize="20sp"
@@ -71,24 +72,23 @@
 
                 <ImageView
                     android:id="@+id/pic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
                     android:padding="2dip"
                     android:src="@drawable/ic_menu_camera"
-                    android:contentDescription="ImageDescription"
                     android:layout_below="@+id/ad_detail_Info"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="author"
                     android:id="@+id/author"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:layout_below="@+id/ad_name"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
@@ -102,40 +102,17 @@
                     android:layout_below="@+id/pic"
                     android:layout_alignParentRight="true" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="修改商品描述"
-                    android:id="@+id/button_edit_ad"
-                    android:layout_gravity="right"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@+id/pic"
-                    android:layout_alignStart="@+id/pic" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="删除商品"
-                    android:id="@+id/button_del_prod"
-                    android:layout_gravity="right"
-                    android:layout_below="@+id/ad_price"
-                    android:layout_alignRight="@+id/ad_price"
-                    android:layout_alignEnd="@+id/ad_price"
-                    android:backgroundTintMode="src_over" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="商品与文字不符？\n点击此处投诉"
                     android:id="@+id/text_complain"
-                    android:textSize="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/ad_name"
-                    android:layout_toEndOf="@+id/ad_name"
-                    android:textColor="#ef6c00" />
-
+                    android:textSize="15dp"
+                    android:textColor="#ef6c00"
+                    android:layout_alignBottom="@+id/buy_button"
+                    android:layout_alignLeft="@+id/pic"
+                    android:layout_alignStart="@+id/pic" />
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
@@ -193,6 +170,34 @@
         </android.support.v7.widget.CardView>
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15sp"
+            android:paddingRight="15sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="5sp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改商品描述"
+                android:id="@+id/button_edit_ad" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除商品"
+                android:id="@+id/button_del_prod"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+
     </LinearLayout>>
+
+
 
 </ScrollView>

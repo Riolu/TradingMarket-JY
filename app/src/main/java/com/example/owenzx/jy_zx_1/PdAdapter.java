@@ -78,7 +78,7 @@ public class PdAdapter extends RecyclerView.Adapter<PdAdapter.ViewHolder>
         public void bindData(HashMap<String,String> m, Context mContext)
         {
             tv1.setText(m.get("name"));
-            tv2.setText(m.get("price"));
+            tv2.setText("¥"+m.get("price"));
             tv3.setText(m.get("detail"));
 //            new DownloadTask(iv).execute((String) m.get("image_url"));
             ImageLoader mImageLoader = MySingleton.getInstance(mContext).getImageLoader();

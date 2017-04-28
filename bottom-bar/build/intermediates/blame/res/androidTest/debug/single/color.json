@@ -32,6 +32,10 @@
         "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_material_light.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_material_light.xml"
+    },
+    {
         "merged": "F:\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\switch_thumb_material_dark.xml",
         "source": "F:\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\switch_thumb_material_dark.xml"
     },
@@ -112,6 +116,10 @@
         "source": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_secondary_text_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\switch_thumb_material_dark.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\switch_thumb_material_dark.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\switch_thumb_material_light.xml",
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\switch_thumb_material_light.xml"
     },
@@ -152,6 +160,10 @@
         "source": "F:\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\switch_thumb_material_light.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_disable_only_material_dark.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\switch_thumb_material_light.xml",
         "source": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\switch_thumb_material_light.xml"
     },
@@ -168,6 +180,10 @@
         "source": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_material_dark.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_material_dark.xml"
+    },
+    {
         "merged": "F:\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_secondary_text_material_light.xml",
         "source": "F:\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_secondary_text_material_light.xml"
     },
@@ -180,6 +196,10 @@
         "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\switch_thumb_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_secondary_text_material_light.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_secondary_text_material_light.xml"
+    },
+    {
         "merged": "F:\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_material_light.xml",
         "source": "F:\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_material_light.xml"
     },
@@ -188,8 +208,16 @@
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_disable_only_material_light.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_disable_only_material_light.xml"
+    },
+    {
         "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_search_url_text.xml",
         "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_search_url_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_search_url_text.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_search_url_text.xml"
     },
     {
         "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_secondary_text_material_dark.xml",
@@ -220,6 +248,10 @@
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_secondary_text_material_light.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_secondary_text_material_dark.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_secondary_text_material_dark.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_disable_only_material_dark.xml",
         "source": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
     },
@@ -246,6 +278,10 @@
     {
         "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_secondary_text_material_dark.xml",
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\switch_thumb_material_light.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\color\\switch_thumb_material_light.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_material_light.xml",

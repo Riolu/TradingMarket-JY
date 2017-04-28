@@ -4,6 +4,10 @@
         "source": "F:\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_out_top.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
         "source": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_popup_enter.xml"
     },
@@ -20,24 +24,28 @@
         "source": "F:\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
-        "source": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_bottom_sheet_slide_in.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
-        "source": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_snackbar_in.xml"
+        "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
-        "source": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_in.xml"
+        "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
+        "source": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_snackbar_in.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
         "source": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
+        "source": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_in.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
@@ -88,6 +96,10 @@
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_bottom_sheet_slide_in.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
         "source": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_out.xml"
     },
@@ -96,12 +108,16 @@
         "source": "F:\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_snackbar_in.xml"
     },
     {
+        "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
-        "source": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_out.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
@@ -144,12 +160,12 @@
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
-        "source": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_out.xml"
-    },
-    {
         "merged": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
         "source": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_in.xml"
+    },
+    {
+        "merged": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
+        "source": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_out.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
@@ -208,6 +224,14 @@
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_snackbar_out.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_snackbar_in.xml"
     },
@@ -218,6 +242,10 @@
     {
         "merged": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
         "source": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
@@ -260,8 +288,16 @@
         "source": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_popup_exit.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
         "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
         "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_fade_out.xml"
     },
     {
         "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
@@ -320,6 +356,14 @@
         "source": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_top.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
         "source": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_bottom_sheet_slide_out.xml"
     },
@@ -334,6 +378,10 @@
     {
         "merged": "F:\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
         "source": "F:\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_popup_exit.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
@@ -358,6 +406,10 @@
     {
         "merged": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
         "source": "D:\\AndroidProjects\\JY_x\\JY_x\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_in.xml"
     },
     {
         "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
@@ -448,6 +500,10 @@
         "source": "D:\\AndroidProjects\\SunshineMaster\\JY_ZX_1\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_out_top.xml"
     },
     {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
         "merged": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
         "source": "D:\\AndroidProjects\\JY_0\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_bottom.xml"
     },
@@ -470,6 +526,10 @@
     {
         "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
         "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\anim\\design_fab_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_popup_enter.xml"
     },
     {
         "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_ZX_5\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
@@ -502,6 +562,10 @@
     {
         "merged": "F:\\JY_0\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
         "source": "F:\\JY_0\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\DELL-PC\\AndroidStudioProjects\\JY_x\\bottom-bar\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\anim\\abc_slide_in_top.xml"
     },
     {
         "merged": "D:\\AndroidProjects\\BottomBar-master\\BottomBar-master\\bottom-bar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
